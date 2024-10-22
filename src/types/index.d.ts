@@ -18,7 +18,12 @@ export type SiteConfig = {
     href: string
     disabled?: boolean
   }
+
+  export type LoginErrorResponse = {
+    success: boolean;
+    message?: string; // Optional because it's only present in case of an error
+  }
   
   export type MainNavItem = NavItem
 
-  
+

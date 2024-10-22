@@ -3,9 +3,6 @@ import { cookies } from 'next/headers'
 
 export function createClient() {
   const cookieStore = cookies()
-  
-  console.log("adsfdsafsa")
-  console.log(process.env.NEXT_PUBLIC_SUPABASE_URL!)
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

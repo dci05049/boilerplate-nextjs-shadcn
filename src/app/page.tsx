@@ -5,12 +5,20 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 export default async function IndexPage() {
   const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  const res = await fetch("http://localhost:3000/api/hello", {
+    headers: headers(),
+  });
+
+  const data = await res.json();
+  console.log(data);
 
   if (!user) {
     return redirect("/login");
@@ -49,6 +57,10 @@ export default async function IndexPage() {
           </div>
         </div>
       </section>
+      <div>
+        <h1>Message from API</h1>
+        <p>{5}</p>
+      </div>
       <section
         id="features"
         className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
